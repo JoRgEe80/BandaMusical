@@ -1,18 +1,17 @@
+
 package dominio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Actuacion{
+public class Actuacion {
     private LocalDate fecha;
-    private Director director;
-    private MusicoSocio musicoSocio;
-    private MusicoRefuerzo musicoRefuerzo;
+    private List<Persona> integrantes;
 
-    public Actuacion(LocalDate fecha_, Director director_, MusicoSocio musicoSocio_, MusicoRefuerzo musicoRefuerzo_){
-        fecha=fecha_;
-        director=director_;
-        musicoSocio=musicoSocio_;
-        musicoRefuerzo=musicoRefuerzo_;
+    public Actuacion(LocalDate fecha) {
+        this.fecha = fecha;
+        this.integrantes = new ArrayList<>();
     }
     public void setFecha(LocalDate fecha_){
         fecha=fecha_;
@@ -21,5 +20,17 @@ public class Actuacion{
         return fecha;
     }
 
-    
+    public void annadirParticipante(Persona integrante) {
+        this.integrantes.add(integrante);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Fecha de actuación: ").append(fecha.toString()).append("\n");
+        for (Persona integrante : integrantes) {
+            sb.append("Integrante: ").append(integrante).append("\n");
+        }
+        return sb.toString();
+    }
 }
